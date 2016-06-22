@@ -76,12 +76,15 @@ func (h *Handler) Set(msg *nats.Msg) {
 		input := h.NewModel()
 		input.MapInput(msg.Data)
 		if input.HasID() == false {
-			e.Save()
-			body, err := json.Marshal(e)
-			if err != nil {
-				h.Fail(msg)
+			if err = e.Save(); err != nil {
+				h.Nats.Publish(msg.Reply, []byte(err.Error()))
+			} else {
+				body, err := json.Marshal(e)
+				if err != nil {
+					h.Fail(msg)
+				}
+				h.Nats.Publish(msg.Reply, body)
 			}
-			h.Nats.Publish(msg.Reply, body)
 		} else {
 			h.Nats.Publish(msg.Reply, h.NotFoundErrorMessage)
 		}
