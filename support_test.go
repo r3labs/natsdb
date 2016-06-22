@@ -48,18 +48,21 @@ func (e *Entity) LoadFromInputOrFail(msg *nats.Msg, h *Handler) bool {
 }
 
 // Update : mocked Update method for testing
-func (e *Entity) Update(body []byte) {
+func (e *Entity) Update(body []byte) error {
 	stored := Entity{
 		ID:   22,
 		Name: "UPDATED",
 	}
 	e = &stored
+	return nil
 }
 
 // Delete : mocked Delete method for testing
-func (e *Entity) Delete() {
+func (e *Entity) Delete() error {
+	return nil
 }
 
 // Save : mocked Save method for testing
-func (e *Entity) Save() {
+func (e *Entity) Save() error {
+	return nil
 }

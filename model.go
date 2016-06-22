@@ -14,9 +14,9 @@ type Model interface {
 	MapInput(body []byte)
 	LoadFromInput(msg []byte) bool
 	LoadFromInputOrFail(msg *nats.Msg, h *Handler) bool
-	Update(body []byte)
-	Delete()
-	Save()
+	Update(body []byte) error
+	Delete() error
+	Save() error
 	Find() []interface{}
 	HasID() bool
 }
