@@ -22,7 +22,8 @@ var (
 	Unexpected = ErrorMessage{Message: "Unexpected error", Code: "500"}
 )
 
-func (e *ErrorMessage) encoded() []byte {
+// Encoded : represent ErrorMessage as a json string
+func (e *ErrorMessage) Encoded() []byte {
 	var err error
 	str := []byte("")
 	if str, err = json.Marshal(e); err != nil {
