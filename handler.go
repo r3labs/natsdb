@@ -66,7 +66,10 @@ func (h *Handler) Del(msg *nats.Msg) {
 func (h *Handler) Set(msg *nats.Msg) {
 	e := h.NewModel()
 	if ok := e.LoadFromInput(msg.Data); ok {
-		e.Update(msg.Data)
+		err = e.Update(msg.Data)
+		if err != nil {
+			h.Fail(msg)
+		}
 		body, err := json.Marshal(e)
 		if err != nil {
 			h.Fail(msg)
