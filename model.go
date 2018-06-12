@@ -5,7 +5,7 @@
 package natsdb
 
 import (
-	"github.com/nats-io/nats"
+	"github.com/nats-io/go-nats"
 )
 
 // Model : This is the interface you need to implement in order

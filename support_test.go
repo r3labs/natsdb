@@ -7,7 +7,7 @@ package natsdb
 import (
 	"encoding/json"
 
-	"github.com/nats-io/nats"
+	"github.com/nats-io/go-nats"
 )
 
 // Entity : a mocked model to b used on testing
